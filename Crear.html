@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crear Cuenta / Iniciar Sesión</title>
+    <style>
+        /* Fondo y estructura de la página */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4; /* Fondo claro */
+    color: #333333; /* Texto oscuro */
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    transition: all 0.5s ease-in-out;
+}
+
+/* Estilo del contenedor del formulario */
+#formContainer {
+    background-color: rgba(242, 242, 242, 0.8); /* Fondo semi-transparente */
+    border: 2px solid #666666; /* Gris oscuro */
+    border-radius: 12px;
+    padding: 30px;
+    width: 90%;
+    max-width: 400px;
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    backdrop-filter: blur(10px); /* Fondo difuminado */
+    transform: scale(0.98);
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+/* Animación suave al pasar el mouse sobre el formulario */
+#formContainer:hover {
+    transform: scale(1);
+    box-shadow: 0 12px 18px rgba(0, 0, 0, 0.2);
+}
+
+/* Estilo de los encabezados dentro del formulario */
+#formContainer h2 {
+    margin-bottom: 20px;
+    color: #333333; /* Texto negro */
+    font-size: 1.5em;
+    transition: font-size 0.3s ease-in-out;
+}
+
+/* Estilo de las etiquetas (labels) */
+#formContainer label {
+    display: block;
+    margin-bottom: 8px; /* Separación entre texto y input */
+    font-weight: bold;
+    color: #333333; /* Texto negro */
+    text-align: center; /* Centrar el texto de las etiquetas */
+    transition: color 0.3s ease-in-out;
+}
+
+/* Estilo de los inputs */
+#formContainer input {
+    width: 80%; /* Reducir el ancho del input */
+    padding: 12px;
+    margin-bottom: 20px; /* Separación entre inputs */
+    border: 1px solid #cccccc; /* Gris claro */
+    border-radius: 8px;
+    font-size: 1em;
+    transition: all 0.4s ease-in-out; /* Animación suave */
+}
+
+/* Efecto de enfoque (focus) en los inputs */
+#formContainer input:focus {
+    border-color: #333333; /* Borde negro al hacer focus */
+    box-shadow: 0 0 8px rgba(51, 51, 51, 0.5); /* Sombra negra */
+    outline: none;
+}
+
+/* Estilo del botón */
+#formContainer button {
+    width: 80%;
+    padding: 12px;
+    background-color: #333333; /* Fondo negro */
+    color: #ffffff; /* Texto blanco */
+    border: none;
+    border-radius: 8px;
+    font-size: 1.1em;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+}
+
+/* Efecto de zoom suave en el botón al pasar el mouse */
+#formContainer button:hover {
+    background-color: #555555; /* Gris oscuro */
+    transform: scale(1.05);
+}
+
+/* Efecto de zoom suave cuando el input o el botón reciben foco */
+#formContainer input:focus, #formContainer button:focus {
+    transform: scale(1.02); /* Pequeño zoom */
+}
+
+/* Mensaje de éxito o error */
+#message {
+    margin-top: 15px;
+    font-size: 1.1em;
+    opacity: 0;
+    animation: fadeIn 0.6s ease-out forwards;
+}
+
+/* Animación para la receta */
+#recipeSection {
+    display: none;
+    text-align: center;
+    padding: 30px;
+    background-color: rgba(242, 242, 242, 0.8); /* Fondo semi-transparente */
+    border-radius: 10px;
+    max-width: 600px;
+    width: 100%;
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.1);
+    opacity: 0;
+    animation: fadeIn 0.8s ease-out forwards;
+}
+
+/* Animación para hacer aparecer los mensajes */
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+/* Ajuste de animación para el contenedor de la receta */
+#recipeSection h3 {
+    color: #333333; /* Texto negro */
+    font-size: 1.5em;
+    margin-bottom: 15px;
+}
+
+/* Mejora la presentación de los ingredientes */
+#recipeSection ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+#recipeSection ul li {
+    font-size: 1.1em;
+    color: #333333; /* Texto negro */
+    margin-bottom: 5px;
+}
+
+#recipeSection p {
+    font-size: 1.2em;
+    color: #333333; /* Texto negro */
+}
+    </style>
+</head>
+<body>
+    <div id="formContainer">
+        <h2 id="formTitle">Crear Cuenta</h2>
+        <label for="email">Correo Electrónico:</label>
+        <input type="email" id="email" placeholder="Ingresa tu correo" required>
+        <label for="password">Contraseña:</label>
+        <input type="password" id="password" placeholder="Ingresa tu contraseña" required>
+        <button id="authBtn">Crear Cuenta</button>
+        <p id="message"></p>
+        <p>¿Ya tienes cuenta? <a href="#" id="toggleForm">Iniciar Sesión</a></p>
+    </div>
+
+    <div id="recipeSection">
+        <h3>Receta de Comida</h3>
+        <p>¡Aquí va una receta deliciosa!</p>
+        <p>Ingredientes:</p>
+        <ul>
+            <li>1 taza de arroz</li>
+            <li>2 tazas de agua</li>
+            <li>1 cucharada de aceite</li>
+            <li>Sal al gusto</li>
+        </ul>
+        <p>Instrucciones: Cocina el arroz según el método tradicional.</p>
+    </div>
+
+<script type="module">
+    import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.21.0/firebase-app.js';
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/9.21.0/firebase-auth.js';
+
+// Configuración de Firebase
+const firebaseConfig = {
+    apiKey: "AIzaSyAlkc2jKHaOWrcFM5XB-IfNXEyFkMAcvXQ",
+    authDomain: "myproyect-9d3bf.firebaseapp.com",
+    projectId: "myproyect-9d3bf",
+    storageBucket: "myproyect-9d3bf.firebasestorage.app",
+    messagingSenderId: "680695552001",
+    appId: "1:680695552001:web:f7c5a96796bd8de60dc800"
+};
+
+// Inicialización de Firebase
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+
+const authBtn = document.getElementById("authBtn");
+const toggleForm = document.getElementById("toggleForm");
+const formTitle = document.getElementById("formTitle");
+const message = document.getElementById("message");
+const recipeSection = document.getElementById("recipeSection");
+const formContainer = document.getElementById("formContainer");
+
+// Función para comprobar el estado de autenticación al cargar la página
+onAuthStateChanged(auth, (user) => {
+    if (user) {
+        // Si el usuario está autenticado
+        formContainer.style.display = "none"; // Ocultar el formulario
+        recipeSection.style.display = "block"; // Mostrar la receta
+    } else {
+        // Si el usuario no está autenticado
+        formContainer.style.display = "block"; // Mostrar el formulario
+        recipeSection.style.display = "none"; // Ocultar la receta
+    }
+});
+
+let isRegistering = true; // Controla si estamos en el modo de registro o inicio de sesión
+
+// Función para crear cuenta o iniciar sesión
+const authenticateUser = async () => {
+    const email = document.getElementById("email").value;
+    const password = document.getElementById("password").value;
+
+    try {
+        if (isRegistering) {
+            // Crear cuenta
+            await createUserWithEmailAndPassword(auth, email, password);
+            message.textContent = "Cuenta creada exitosamente. ¡Bienvenido!";
+            message.style.color = "green";
+        } else {
+            // Iniciar sesión
+            await signInWithEmailAndPassword(auth, email, password);
+            message.textContent = "Inicio de sesión exitoso. ¡Bienvenido!";
+            message.style.color = "green";
+        }
+        // Ocultar el formulario y mostrar la receta
+        formContainer.style.display = "none";
+        recipeSection.style.display = "block";
+    } catch (error) {
+        // Mensajes personalizados y amigables
+        if (error.code === 'auth/user-not-found') {
+            message.textContent = "No se ha encontrado una cuenta con este correo. Si no tienes cuenta, ¡regístrate ahora!";
+            message.style.color = "red";
+        } else if (error.code === 'auth/wrong-password') {
+            message.textContent = "La contraseña ingresada es incorrecta. ¿Olvidaste tu contraseña? ¡Recupérala aquí!";
+            message.style.color = "red";
+        } else {
+            message.textContent = "Oops, algo salió mal parece que no ingresaste nada o tu cuenta no existe ¡Vamos create una!.";
+            message.style.color = "black";
+        }
+    }
+};
+
+// Cambiar entre formulario de registro e inicio de sesión
+toggleForm.addEventListener("click", (e) => {
+    e.preventDefault();
+    if (isRegistering) {
+        formTitle.textContent = "Iniciar Sesión";
+        authBtn.textContent = "Iniciar Sesión";
+        toggleForm.textContent = "¿No tienes cuenta? Crear una cuenta";
+        isRegistering = false;
+    } else {
+        formTitle.textContent = "Crear Cuenta";
+        authBtn.textContent = "Crear Cuenta";
+        toggleForm.textContent = "¿Ya tienes cuenta? Iniciar sesión";
+        isRegistering = true;
+    }
+    message.textContent = "";
+});
+
+// Evento del botón para crear cuenta o iniciar sesión
+authBtn.addEventListener("click", authenticateUser);
+</script>
+</body>
+</html>
